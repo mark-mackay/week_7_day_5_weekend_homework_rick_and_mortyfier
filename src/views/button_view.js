@@ -14,6 +14,14 @@ ButtonView.prototype.bindEvents = function(){
   nextButton.addEventListener('click', (evt) => {
     this.handleButtonClick(evt.target.value);
   });
+  const firstButton = document.querySelector('#first-button');
+  firstButton.addEventListener('click', (evt) => {
+    this.handleButtonClick(evt.target.value);
+  });
+  const lastButton = document.querySelector('#last-button');
+  lastButton.addEventListener('click', (evt) => {
+    this.handleButtonClick(evt.target.value);
+  });
   // PubSub.subscribe('Characters:all-characters-ready', (evt) => {
   //   const allCharacters = evt.detail;
   //   this.populate(allCharacters);

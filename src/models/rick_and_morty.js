@@ -19,8 +19,14 @@ RickAndMorty.prototype.bindEvents = function () {
     if (direction === 'previous')  {
       this.getData(this.previousPage);
     }
-    else {
+    else if (direction === 'next' ){
       this.getData(this.nextPage);
+    }
+    else if (direction === 'last'){
+      this.getData('https://rickandmortyapi.com/api/character/?page=25');
+    }
+    else {
+      this.getData();
     };
   });
 };
