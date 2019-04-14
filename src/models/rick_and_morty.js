@@ -4,6 +4,8 @@ const PubSub = require('../helpers/pub_sub.js');
 const RickAndMorty = function () {
   this.data = null;
   this.characters = null;
+  this.previousPage = '';
+  this.nextPage = '';
 };
 
 RickAndMorty.prototype.bindEvents = function () {
@@ -11,6 +13,15 @@ RickAndMorty.prototype.bindEvents = function () {
   PubSub.subscribe('SelectView:change', (evt) => {
     const characterIndex = evt.detail;
       this.publishCharacterByIndex(characterIndex);
+  });
+  PubSub.subscribe('Buttons: Clicked', (evt) => {
+    const direction = evt.detail;
+    if (direction === 'previous')  {
+      this.getData(this.previousPage);
+    }
+    else {
+      this.getData(this.nextPage);
+    };
   });
 };
 
@@ -23,6 +34,8 @@ const request = new Request(url);
 request.get()
     .then((characters) => {
       this.data = characters.results;
+      this.previousPage = characters.info.prev;
+      this.nextPage = characters.info.next;
       PubSub.publish('Characters:all-characters-ready', this.data);
       this.publishCharacters();
     })
@@ -53,6 +66,10 @@ RickAndMorty.prototype.informationByCharacter = function (characterIndex) {
 RickAndMorty.prototype.publishCharacterByIndex = function (characterIndex) {
   const foundCharacter = this.informationByCharacter(characterIndex);
   PubSub.publish('Characters:selected-character-ready', foundCharacter);
+};
+
+RickAndMorty.prototype.changePage = function() {
+
 };
 
 module.exports = RickAndMorty;

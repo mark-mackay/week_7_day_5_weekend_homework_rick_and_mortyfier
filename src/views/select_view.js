@@ -17,6 +17,8 @@ SelectView.prototype.bindEvents = function(){
 };
 
 SelectView.prototype.populate = function(charactersData){
+  this.element.innerHTML = '<option selected disabled></option>';
+
   charactersData.forEach((character, index) => {
     const option = document.createElement('option');
     option.textContent = character.name;

@@ -7,7 +7,6 @@ const InfoView = function(container){
 InfoView.prototype.bindEvents = function(){
   PubSub.subscribe('Characters:selected-character-ready', (evt) => {
     const character = evt.detail;
-    console.log(this.container);
     this.render(character);
   });
 };
@@ -18,7 +17,6 @@ InfoView.prototype.buildElement = function(type, text, cls) {
   return element;
 }
 InfoView.prototype.render = function(character){
-  console.log(character);
   const infoParagraph = this.buildElement('div', '');
   const characterName = this.buildElement('h2', `Character: ${character.name}`);
   const characterStatus = this.buildElement('p', `Status: ${character.status}`);
@@ -36,7 +34,7 @@ InfoView.prototype.render = function(character){
 
   this.container.innerHTML = '';
   this.container.appendChild(infoParagraph);
-  
+
 };
 
 module.exports = InfoView;
