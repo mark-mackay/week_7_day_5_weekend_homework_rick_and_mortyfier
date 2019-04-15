@@ -1,0 +1,14 @@
+* {
+  background-color: cyan;
+}
+
+.buttons {
+  display: inline-block;
+  color: cyan;
+  background-color: magenta;
+  border: 1px solid;
+  border-radius: 10px;
+}
+.infobox {
+  display: inline;
+}
